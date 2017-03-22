@@ -1,0 +1,8 @@
+*.pyc
+.cache/
+venv/
+env/
+data/population-by-age-by-town.csv
+raw/*.csv
+.DS_Store
+.idea/
