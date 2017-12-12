@@ -1,6 +1,10 @@
 Population by Age by Town
 
-DUE TO THE LARGE SIZE OF THE OUTPUT FILE, THIS DATASET SHOULD NOT BE TESTED VIA TRAVIS.
+Population by Age by Town reports the number and percentage of people living in an area, per age range, gender, and Race/Ethnicity.
+
+Data Source: U.S. Census ACS 5-Year Estimates Table B01001
+
+Due to the large size of the output file, it has not been uploaded to GitHub.
 
 ## License MIT
 
@@ -80,7 +84,7 @@ The final extra property that should be present is an array of spot check tests 
       "field3": "field_name",
     },
     "expected_value": {
-      "value": value_as_a_numeric,
+      "value": "value_as_a_numeric",
       "type": "integer"
     }
   }

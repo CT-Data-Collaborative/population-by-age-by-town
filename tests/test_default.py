@@ -3,14 +3,15 @@ import pytest
 ##################################################################
 #
 # Basic testing script for Population by Age by Town
-# Created by Sasha Cuerda
-# On 3/20/2017
+# Created by Jenna Daly
+# On 11/27/2017
 #
 ##################################################################
 
 
 def test_towns(towns, geographies):
     assert set([x['Town'] for x in towns]) == set(geographies)
+
 
 def test_dataset_row_counts(rowcount):
     assert rowcount.actual == rowcount.expected

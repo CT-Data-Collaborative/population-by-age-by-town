@@ -15,7 +15,11 @@ getCTGeos <- function(level = "town") {
     returnCounties <- level %in% c("county", "both")
 
     # Get our FIPS from file
-    fips <- read.csv(file.path(getOption("common_path"), "Geography", "town_fips.csv"))
+    town_fips_dp_URL <- 'https://raw.githubusercontent.com/CT-Data-Collaborative/ct-town-list/master/datapackage.json'
+    town_fips_dp <- datapkg_read(path = town_fips_dp_URL)
+    fips <- (town_fips_dp$data[[1]])
+    fips <- as.data.table(fips)
+    #fips <- read.csv(file.path(getOption("common_path"), "Geography", "town_fips.csv"))
 
     subdiv_fips <- fips[c(2:170),]
     subdiv_fips$county <- sapply(subdiv_fips$FIPS, function(x) {
@@ -37,7 +41,7 @@ getCTGeos <- function(level = "town") {
         county <- countyfips[i]
         if (returnTowns) { # If we're return towns (or both)
             subdivs <- subdiv_fips[subdiv_fips$county==county,4]
-            geos <- geo.make(state=09, county=county, county.subdivision=subdivs)
+            geos <- geo.make(state=09, county=county, county.subdivision=subdivs$subdiv)
             geosObj <- geosObj + geos
         }
         if (returnCounties) { # If we're return counties (or both)
@@ -88,7 +92,8 @@ getACSData <- function(geoObject, yearList, table) {
         } else {
             print("No raw file - Using API")
             # if not, fetch from API
-            data <- acs.fetch(geography=geoObject, endyear=y, table.number=table, col.names="pretty")
+            data <- acs.fetch(geography=geoObject, endyear=y, table.number=table, col.names="pretty", 
+                              key="ed0e58d2538fb239f51e01643745e83f380582d7")
         }
         print(paste("Fetched", data@endyear, sep=":"))
         data.list <- c(data.list, data)

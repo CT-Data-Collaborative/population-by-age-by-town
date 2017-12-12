@@ -1,6 +1,8 @@
 import pytest
 import datapackage
 
+
+
 @pytest.fixture
 def towns():
     """Load our town list datapackage"""
