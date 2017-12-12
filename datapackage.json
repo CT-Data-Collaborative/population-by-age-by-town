@@ -21,7 +21,7 @@
   }],
   "contributor": [],
   "resources": [{
-    "path": "data/population-by-age-town-2016.csv",
+    "path": "data/population-by-age-town.csv",
     "format": "csv",
     "schema": {
       "fields": [{
