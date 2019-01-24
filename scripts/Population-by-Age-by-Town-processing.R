@@ -17,7 +17,7 @@ source('./scripts/acsHelpers.R')
 
 #Get state data
 geography=geo.make(state=09)
-yearlist=c(2009:2016)
+yearlist=c(2009:2017)
 span = 5
 col.names="pretty" 
 key="ed0e58d2538fb239f51e01643745e83f380582d7"
@@ -56,6 +56,7 @@ for (i in seq_along(yearlist)) {
     variable <- as.character(variable)    
     data <- acs.fetch(geography=geography, endyear=endyear, span=span, 
                       variable = variable, key=key)
+    Sys.sleep(5)
     total <- data[, 1]
     acs.colnames(total) <- "Number:Total:Total"
     geo <- data@geography
@@ -803,7 +804,8 @@ for (i in seq_along(yearlist)) {
     }
     variable <- as.character(variable)    
     data <- acs.fetch(geography=geography, endyear=endyear, span=span, 
-                      variable = variable, key=key)    
+                      variable = variable, key=key)
+    Sys.sleep(5)
     total <- data[, 1]
     acs.colnames(total) <- "Number:Total:Total"
     geo <- data@geography
@@ -1567,7 +1569,7 @@ dataset <- dataset %>%
 
 write.table(
     dataset,
-    file.path("data", "population-by-age-town-2016.csv"),
+    file.path("data", "population-by-age-town-2017.csv"),
     sep = ",",
     row.names = F,
     na = "-9999"
